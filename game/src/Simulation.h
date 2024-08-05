@@ -5,18 +5,22 @@ class Simulation
 {
     Grid grid;
     Grid tempGrid;
-    bool run;
+    bool isPaused = false;
+
 public:
     Simulation(int width, int height, int cellSize)
-    : grid(width, height, cellSize), tempGrid(width, height, cellSize), run(false) {};
+    : grid(width, height, cellSize), tempGrid(width, height, cellSize) {}
     void Draw();
     void SetCellValue(int row, int column, int value);
     int CountLiveNeighbors(int row, int column);
     void Update();
-    bool IsRunning() { return run; }
-    void Start() { run = true; }
-    void Stop() { run = false; }
+    bool IsPaused() { return isPaused; }
+    void Unpause() { isPaused = true; }
+    void Pause() { isPaused = false; }
+    void TogglePause();
     void ClearGrid();
     void CreateRandomState();
     void ToggleCell(int row, int column);
+    int GetLivingCells();
+
 };

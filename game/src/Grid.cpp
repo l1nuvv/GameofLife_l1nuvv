@@ -31,11 +31,7 @@ int Grid::GetValue(int row, int column)
 
 bool Grid::IsWithInBounds(int row, int column)
 {
-    if(row >= 0 && row < rows && column >= 0 && column < columns)
-    {
-        return true;
-    }
-    return false;
+    return row >= 0 && row < rows && column >= 0 && column < columns;
 }
 
 void Grid::FillRandom()

@@ -2,6 +2,8 @@
 #include <utility>
 #include "Simulation.h"
 
+#include "raylib.h"
+
 void Simulation::Draw()
 {
     grid.Draw();
@@ -38,7 +40,7 @@ int Simulation::CountLiveNeighbors(int row, int column)
 
 void Simulation::Update()
 {
-    if(IsRunning())
+    if(IsPaused())
     {
         for(int row = 0; row < grid.GetRows(); row++)
         {
@@ -58,16 +60,13 @@ void Simulation::Update()
                         tempGrid.SetValue(row, column, 1);
                     }
                 }
+                else if(liveNeighbors == 3)
+                {
+                    tempGrid.SetValue(row, column, 1);
+                }
                 else
                 {
-                    if(liveNeighbors == 3)
-                    {
-                        tempGrid.SetValue(row, column, 1);
-                    }
-                    else
-                    {
-                        tempGrid.SetValue(row, column, 0);
-                    }
+                    tempGrid.SetValue(row, column, 0);
                 }
             }
         }
@@ -75,9 +74,20 @@ void Simulation::Update()
     }
 }
 
+void Simulation::TogglePause()
+{
+    isPaused = !isPaused;
+    if(isPaused)
+    {
+        SetWindowTitle("Game of Life is running... ");
+        return;
+    }
+    SetWindowTitle("Game of Life has stopped... ");
+}
+
 void Simulation::ClearGrid()
 {
-    if(!IsRunning())
+    if(!IsPaused())
     {
         grid.Clear();
     }
@@ -85,7 +95,7 @@ void Simulation::ClearGrid()
 
 void Simulation::CreateRandomState()
 {
-    if(!IsRunning())
+    if(!IsPaused())
     {
         grid.FillRandom();
     }
@@ -93,9 +103,22 @@ void Simulation::CreateRandomState()
 
 void Simulation::ToggleCell(int row, int column)
 {
-    if(!IsRunning())
+    if(!IsPaused())
     {
         grid.ToggleCell(row, column);
     }
+}
+
+int Simulation::GetLivingCells()
+{
+    int liveCells = 0;
+    for(int row = 0; row < grid.GetRows(); row++)
+    {
+        for(int column = 0; column < grid.GetColumns(); column++)
+        {
+           liveCells += grid.GetValue(row, column);
+        }
+    }
+    return liveCells;
 }
 
