@@ -3,15 +3,17 @@
 
 class Simulation
 {
-    Grid grid;
-    Grid tempGrid;
+    Grid* grid;
+    Grid* tempGrid;
     bool isPaused = false;
 
 public:
     Simulation(int width, int height, int cellSize)
-    : grid(width, height, cellSize), tempGrid(width, height, cellSize) {}
-    void Draw();
-    void SetCellValue(int row, int column, int value);
+    {
+        grid = new Grid(width, height, cellSize);
+        tempGrid = new Grid(width, height, cellSize);
+    }
+    //void SetCellValue(int row, int column, int value);
     int CountLiveNeighbors(int row, int column);
     void Update();
     bool IsPaused() { return isPaused; }
@@ -22,5 +24,5 @@ public:
     void CreateRandomState();
     void ToggleCell(int row, int column);
     int GetLivingCells();
-
+    Grid* getGrid(){ return grid; }
 };

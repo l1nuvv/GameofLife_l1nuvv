@@ -1,13 +1,21 @@
 #include <raylib.h>
+
+#include "raymath.h"
 #include "Simulation.h"
 
 int main()
 {
     Color GREY = {29, 29, 29, 255};
+
+    Camera2D camera = { };
+    camera.zoom = 1.0f;
+    
     const int WINDOW_WIDTH = 1200;
     const int WINDOW_HEIGHT = 800;
-    const int CELL_SIZE = 25;
+    const int CELL_SIZE = 4;
+    
     int FPS = 12;
+    
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT,"Game of danek-dev");
     SetTargetFPS(FPS);
     Simulation Simulation{WINDOW_WIDTH, WINDOW_HEIGHT, CELL_SIZE};
@@ -15,8 +23,27 @@ int main()
     //Simulation loop
     while(!WindowShouldClose())
     {
+        float wheel = GetMouseWheelMove();
+
         //(1)Event Handling
 
+        if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
+        {
+            Vector2 delta = GetMouseDelta();
+            delta = Vector2Scale(delta, -1.0f/camera.zoom);
+            camera.target = Vector2Add(camera.target, delta);
+        }
+        
+        if(GetMouseWheelMove() > 0)
+        {
+           Simulation.getGrid()->ZoomIn();
+        }
+
+        if(GetMouseWheelMove() < 0)
+        {
+            Simulation.getGrid()->ZoomOut();
+        }
+        
         if(IsMouseButtonDown(MOUSE_BUTTON_LEFT))
         {
             Vector2 mousePosition = GetMousePosition();
@@ -52,16 +79,18 @@ int main()
         {
             Simulation.ClearGrid();
         }
-        
+
         //(2)Updating State
         Simulation.Update();
         
         //(3)Drawing
         BeginDrawing();
         ClearBackground(GREY);
-        Simulation.Draw();
-        DrawText(TextFormat("Living cells: %i", Simulation.GetLivingCells()),25,25,50,RED);
-        DrawText(TextFormat("FPS: %i",FPS),25,85,50,RED);
+        Simulation.getGrid()->Draw();
+        DrawText(TextFormat("Living cells: %i", Simulation.GetLivingCells()),24,6,31,BLACK);
+        DrawText(TextFormat("Living cells: %i", Simulation.GetLivingCells()),25,5,30,GOLD);
+        DrawText(TextFormat("FPS: %i",FPS),24,46,32,BLACK);
+        DrawText(TextFormat("FPS: %i",FPS),25,45,30,MAGENTA);
         EndDrawing();
     }
     

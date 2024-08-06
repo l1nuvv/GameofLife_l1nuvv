@@ -4,16 +4,6 @@
 
 #include "raylib.h"
 
-void Simulation::Draw()
-{
-    grid.Draw();
-}
-
-void Simulation::SetCellValue(int row, int column, int value)
-{
-    grid.SetValue(row, column, value);
-}
-
 int Simulation::CountLiveNeighbors(int row, int column)
 {
     int liveNeighbors = 0;
@@ -31,9 +21,9 @@ int Simulation::CountLiveNeighbors(int row, int column)
 
     for(const auto& offset : neighborsOffsets)
     {
-        int neighborRow = (row + offset.first + grid.GetRows()) % grid.GetRows();
-        int neighborColumn = (column + offset.second + grid.GetColumns()) % grid.GetColumns();
-        liveNeighbors += grid.GetValue(neighborRow, neighborColumn);
+        int neighborRow = (row + offset.first + grid->GetRows()) % grid->GetRows();
+        int neighborColumn = (column + offset.second + grid->GetColumns()) % grid->GetColumns();
+        liveNeighbors += grid->GetValue(neighborRow, neighborColumn);
     }
    return liveNeighbors; 
 }
@@ -42,31 +32,31 @@ void Simulation::Update()
 {
     if(IsPaused())
     {
-        for(int row = 0; row < grid.GetRows(); row++)
+        for(int row = 0; row < grid->GetRows(); row++)
         {
-            for(int column = 0; column < grid.GetColumns(); column++)
+            for(int column = 0; column < grid->GetColumns(); column++)
             {
                 int liveNeighbors = CountLiveNeighbors(row, column);
-                int cellValue = grid.GetValue(row, column);
+                int cellValue = grid->GetValue(row, column);
 
                 if(cellValue == 1)
                 {
                     if(liveNeighbors > 3 || liveNeighbors < 2)
                     {
-                        tempGrid.SetValue(row, column, 0);
+                        tempGrid->SetValue(row, column, 0);
                     }
                     else
                     {
-                        tempGrid.SetValue(row, column, 1);
+                        tempGrid->SetValue(row, column, 1);
                     }
                 }
                 else if(liveNeighbors == 3)
                 {
-                    tempGrid.SetValue(row, column, 1);
+                    tempGrid->SetValue(row, column, 1);
                 }
                 else
                 {
-                    tempGrid.SetValue(row, column, 0);
+                    tempGrid->SetValue(row, column, 0);
                 }
             }
         }
@@ -89,7 +79,7 @@ void Simulation::ClearGrid()
 {
     if(!IsPaused())
     {
-        grid.Clear();
+        grid->Clear();
     }
 }
 
@@ -97,7 +87,7 @@ void Simulation::CreateRandomState()
 {
     if(!IsPaused())
     {
-        grid.FillRandom();
+        grid->FillRandom();
     }
 }
 
@@ -105,18 +95,18 @@ void Simulation::ToggleCell(int row, int column)
 {
     if(!IsPaused())
     {
-        grid.ToggleCell(row, column);
+        grid->ToggleCell(row, column);
     }
 }
 
 int Simulation::GetLivingCells()
 {
     int liveCells = 0;
-    for(int row = 0; row < grid.GetRows(); row++)
+    for(int row = 0; row < grid->GetRows(); row++)
     {
-        for(int column = 0; column < grid.GetColumns(); column++)
+        for(int column = 0; column < grid->GetColumns(); column++)
         {
-           liveCells += grid.GetValue(row, column);
+           liveCells += grid->GetValue(row, column);
         }
     }
     return liveCells;

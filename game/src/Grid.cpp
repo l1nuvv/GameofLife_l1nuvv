@@ -40,8 +40,8 @@ void Grid::FillRandom()
     {
         for(int column = 0; column < columns; column++)
         {
-            int randomValue = GetRandomValue(0,4);
-            cells[row][column] = (randomValue == 4) ? 1 : 0;
+            int randomValue = GetRandomValue(0,20);
+            cells[row][column] = (randomValue == 20) ? 1 : 0;
         }
     }
 }
@@ -63,4 +63,14 @@ void Grid::ToggleCell(int row, int column)
     {
         cells[row][column] = !cells[row][column];
     }
+}
+
+void Grid::ZoomIn()
+{
+    cellSize++;
+}
+
+void Grid::ZoomOut()
+{
+    cellSize--;
 }

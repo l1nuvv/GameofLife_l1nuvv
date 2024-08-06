@@ -1,12 +1,3 @@
-raylib-master
-_build
-_bin
-.vs
-/bin
-/build
-Makefile
-obj
-
 ##### Windows
 # Windows thumbnail cache files
 Thumbs.db
