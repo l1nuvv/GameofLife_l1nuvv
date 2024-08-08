@@ -1,11 +1,5 @@
 <h1 align="center" id="title">Conway's Game of Life implementation</h1>
 
-<h2>Project Screenshots:</h2>
-
-![Screenshot_22](https://github.com/user-attachments/assets/254fa85d-f9bf-40fc-bbdb-1aa527000efe)
-
-  
-  
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
@@ -48,3 +42,5 @@ Technologies used in the project:
 *   C++
 *   Premake
 *   Youtube :D
+
+![Demo](https://github.com/user-attachments/assets/0e1dadac-dfec-40ef-a111-30a27f45e02c)
