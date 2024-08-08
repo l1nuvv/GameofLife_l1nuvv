@@ -8,6 +8,7 @@ Here're some of the project's best features:
 *   Pause/Stop simulation
 *   Fill random cells
 *   Clear all cells in the grid
+*   Zoom In/Zoom Out
 
 <h2>🎮 Control keys</h2>
 Speed up simulation - <strong>SHIFT</strong><br>
@@ -15,6 +16,7 @@ Slow down simulation - <strong>LCTRL</strong><br>
 Pause/Continue simulation - <strong>ENTER</strong><br>
 Fill random cells - <strong>R</strong><br>
 Clear all cells - <strong>C</strong><br>
+Zoom In/Zoom Out - <strong>Mouse Wheel Up/Down</strong><br>
 
 <h2>🛠️ Installation Steps:</h2>
 
