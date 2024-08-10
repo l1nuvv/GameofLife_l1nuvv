@@ -9,6 +9,7 @@ Here're some of the project's best features:
 *   Fill random cells
 *   Clear all cells in the grid
 *   Zoom In/Zoom Out
+*   You can change the cellSize, screenWidth, screenHeight in main.cpp
 
 <h2>🎮 Control keys</h2>
 Speed up simulation - <strong>SHIFT</strong><br>
