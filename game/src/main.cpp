@@ -7,9 +7,6 @@ int main()
 {
     Color GREY = {29, 29, 29, 255};
 
-    Camera2D camera = { };
-    camera.zoom = 1.0f;
-    
     const int WINDOW_WIDTH = 1200;
     const int WINDOW_HEIGHT = 800;
     const int CELL_SIZE = 4;
@@ -23,17 +20,9 @@ int main()
     //Simulation loop
     while(!WindowShouldClose())
     {
-        float wheel = GetMouseWheelMove();
 
         //(1)Event Handling
 
-        if (IsMouseButtonDown(MOUSE_BUTTON_RIGHT))
-        {
-            Vector2 delta = GetMouseDelta();
-            delta = Vector2Scale(delta, -1.0f/camera.zoom);
-            camera.target = Vector2Add(camera.target, delta);
-        }
-        
         if(GetMouseWheelMove() > 0)
         {
            Simulation.getGrid()->ZoomIn();
