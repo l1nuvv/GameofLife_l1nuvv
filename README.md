@@ -6,6 +6,7 @@ Here're some of the project's best features:
 
 *   Speed up/Slow down simulation
 *   Pause/Stop simulation
+*   Place cell
 *   Fill random cells
 *   Clear all cells in the grid
 *   Zoom In/Zoom Out
@@ -15,6 +16,7 @@ Here're some of the project's best features:
 Speed up simulation - <strong>SHIFT</strong><br>
 Slow down simulation - <strong>LCTRL</strong><br>
 Pause/Continue simulation - <strong>ENTER</strong><br>
+Place cell - <strong>LMB</strong><br>
 Fill random cells - <strong>R</strong><br>
 Clear all cells - <strong>C</strong><br>
 Zoom In/Zoom Out - <strong>Mouse Wheel Up/Down</strong><br>
